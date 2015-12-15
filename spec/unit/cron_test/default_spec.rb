@@ -67,4 +67,8 @@ describe 'cron_test::default' do
       user: 'appuser'
     )
   end
+
+  it 'starts cron service[cron]' do
+    expect(chef_run).to start_service('cron')
+  end
 end

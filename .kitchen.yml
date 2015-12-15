@@ -20,6 +20,10 @@ platforms:
     run_list: apt::default
   - name: freebsd-9.3
   - name: freebsd-10.2
+  - name: prometheus-6.5.11
+    driver_config:
+      box: prometheus-6.5.11-201509222220
+      box_url: https://s3-us-west-1.amazonaws.com/com.altiscale.vagrant/prometheus/boxes/prometheus-6.5.11-201509222220.box?AWSAccessKeyId=AKIAIKOVEEW6FVT5JBQA&Expires=1758540162&Signature=NKM7r5d24o02JzTBKAXiYBW6BIE%3D
 
 suites:
 - name: default
