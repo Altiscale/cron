@@ -2,7 +2,7 @@
 # Cookbook Name:: cron_test
 # Recipe:: test
 #
-# Copyright:: (c) 2008-2014, Chef Software, Inc
+# Copyright:: (c) 2008-2015, Chef Software, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -63,7 +63,6 @@ cron_d 'predefined_value_check' do
 end
 
 cron_d 'nil_value_check' do
-  predefined_value nil
   command '/bin/true'
   user 'appuser'
   action :create
@@ -72,5 +71,22 @@ end
 cron_d 'no_value_check' do
   command '/bin/true'
   user 'appuser'
-  action :create
+  action :create_if_missing
+end
+
+cron_d 'test-weekday-usage-report' do
+  minute '1'
+  hour '1'
+  weekday '1'
+  command '/this/should/never/run'
+  user 'appuser'
+  action :create_if_missing
+end
+
+file '/etc/cron.d/delete_cron' do
+  content '* * * * * appuser /bin/true'
+end
+
+cron_d 'delete_cron' do
+  action :delete
 end
