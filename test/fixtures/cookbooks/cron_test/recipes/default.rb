@@ -19,6 +19,13 @@
 
 include_recipe 'cron'
 
+# create a file with periods as if the older version of this cookbook raspbian
+# the provider should clean it up and we'll test that it doesn't exists
+file '/etc/cron.d/job.with.periods' do
+  content 'old junk'
+  action :create
+end
+
 cron_d 'bizarrely-scheduled-usage-report' do
   minute '*/5'
   hour '1,23'
@@ -74,7 +81,14 @@ cron_d 'no_value_check' do
   action :create_if_missing
 end
 
-cron_d 'test-weekday-usage-report' do
+cron_d 'job.with.periods' do
+  command '/bin/true'
+  user 'appuser'
+  action :create_if_missing
+end
+
+cron_d 'test-weekday-usage-report2' do
+  name 'test-weekday-usage-report'
   minute '1'
   hour '1'
   weekday '1'

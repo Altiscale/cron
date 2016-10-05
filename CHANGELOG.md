@@ -1,6 +1,27 @@
 # cron Cookbook CHANGELOG
 This file is used to list changes made in each version of the cron cookbook.
 
+## 2.0.0 (2016-09-15)
+- Update supported OS releases in the readme
+- Switch to kitchen-dokken and test on more platforms
+- Resolve foodcritic warnings
+- Split out unit testing in travis and use the rakefile with cookstyle
+- Require chef 12.1
+- Properly define the chefspec matcher
+- Use multipackage for installs
+
+## v1.7.6 (2016-03-23)
+- Cleanup the cron.d jobs with the non-santized filenames to prevent duplicate job jobs if cron < 1.7.4 was ever run on the node
+
+## v1.7.5 (2016-03-01)
+- Fixes '* is not valid value for validate_numeric' errors
+
+## v1.7.4 (2016-02-16)
+- Sanitize cron job names in the custom resource to replace '.' with '-'
+
+## v1.7.3 (2015-12-20)
+- Re-release to remove DS Store file that snuck in
+
 ## v1.7.2 (2015-12-14)
 - Fixed the inability to delete a cron job without specifying the command. Expanded tests to cover this scenario and the create_if_missing action
 
